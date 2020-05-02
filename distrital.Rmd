@@ -26,14 +26,27 @@ regiones <- info_distrital %>%
   distinct(Region) %>% 
   pull(Region)
 
-mapa_distrital %>% 
+plot_region <- function(data, region){
+  data %>% 
   left_join(info_distrital) %>% 
-  filter(Region %in% regiones[1]) %>% 
+  filter(Region %in% region) %>% 
   ggplot()+
   geom_sf(aes(fill = Valor)) +
   scale_x_discrete()+
-  labs(title = paste("Contagios por distrito en", regiones[1]))+
+  labs(title = paste("Contagios por distrito en", region))+
   theme(legend.position = "none")
+}
+
+plot_region(mapa_distrital, "AMAZONAS")
+
+# mapa_distrital %>% 
+#   left_join(info_distrital) %>% 
+#   filter(Region %in% regiones[1]) %>% 
+#   ggplot()+
+#   geom_sf(aes(fill = Valor)) +
+#   scale_x_discrete()+
+#   labs(title = paste("Contagios por distrito en", regiones[1]))+
+#   theme(legend.position = "none")
 
 
 # se encuentra que hay una observacion fechada como 2020-07-04, se asume que debería ser 2020-04-07
