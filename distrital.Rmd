@@ -39,17 +39,10 @@ plot_region <- function(data, region){
 
 plot_region(mapa_distrital, "AMAZONAS")
 
-# mapa_distrital %>% 
-#   left_join(info_distrital) %>% 
-#   filter(Region %in% regiones[1]) %>% 
-#   ggplot()+
-#   geom_sf(aes(fill = Valor)) +
-#   scale_x_discrete()+
-#   labs(title = paste("Contagios por distrito en", regiones[1]))+
-#   theme(legend.position = "none")
+# Ejemplo de uso
+map(c("AMAZONAS", "APURIMAC"), ~plot_region(mapa_distrital, .x)) %>% 
+  walk(print)
 
-
-# se encuentra que hay una observacion fechada como 2020-07-04, se asume que debería ser 2020-04-07
 ```
 
 
